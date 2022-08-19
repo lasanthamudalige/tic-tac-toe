@@ -4,7 +4,7 @@ import sys
 
 def main():
     board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-    print_map(board)
+    print_board(board)
 
     while " " in board:
         # get user input
@@ -13,14 +13,14 @@ def main():
         move(board, position, "x")
         # computer's move
         computer_move(board)
-        print_map(board)
+        print_board(board)
         get_winner(board)
 
     print("Nobody won. Game is a draw")
     sys.exit()
 
 
-def print_map(board):
+def print_board(board):
     col = 0
     row = 0
     # after printing 3 " " s. move to the next line.
