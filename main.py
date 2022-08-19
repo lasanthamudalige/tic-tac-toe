@@ -3,28 +3,28 @@ import sys
 
 
 def main():
-    map = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-    print_map(map)
+    board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+    print_map(board)
 
-    while " " in map:
+    while " " in board:
         # get user input
         position = get_move()
         # move move 'x' to the position in the map
-        move(map, position, "x")
+        move(board, position, "x")
         # computer's move
-        computer_move(map)
-        print_map(map)
-        get_winner(map)
+        computer_move(board)
+        print_map(board)
+        get_winner(board)
 
     print("Nobody won. Game is a draw")
     sys.exit()
 
 
-def print_map(map):
+def print_map(board):
     col = 0
     row = 0
     # after printing 3 " " s. move to the next line.
-    for i in map:
+    for i in board:
         if col == 2:
             print(f"{i}", end="\n")
             if row != 2:
@@ -50,74 +50,74 @@ def get_move():
             print("Invalid input")
 
 
-def move(map, position, symbol):
+def move(board, position, symbol):
     # if position is empty. then add it to the map
-    if map[position - 1] == " ":
-        map[position - 1] = symbol
+    if board[position - 1] == " ":
+        board[position - 1] = symbol
     else:
         print("Position is already filled!")
 
 
-def computer_move(map):
+def computer_move(board):
     position = random.randint(0, 8)
 
     # is there are empty slots in the map. then add 'o' to the map
-    if " " in map:
-        if map[position] == " ":
-            map[position] = "o"
+    if " " in board:
+        if board[position] == " ":
+            board[position] = "o"
         else:
-            computer_move(map)
+            computer_move(board)
 
 
-def get_winner(map):
+def get_winner(board):
     # player's winning opportunity
-    if map[0] == "x" and map[1] == "x" and map[2] == "x":
+    if board[0] == "x" and board[1] == "x" and board[2] == "x":
         print("You won!")
         sys.exit()
-    elif map[3] == "x" and map[4] == "x" and map[5] == "x":
+    elif board[3] == "x" and board[4] == "x" and board[5] == "x":
         print("You won!")
         sys.exit()
-    elif map[6] == "x" and map[7] == "x" and map[8] == "x":
+    elif board[6] == "x" and board[7] == "x" and board[8] == "x":
         print("You won!")
         sys.exit()
-    elif map[0] == "x" and map[3] == "x" and map[6] == "x":
+    elif board[0] == "x" and board[3] == "x" and board[6] == "x":
         print("You won!")
         sys.exit()
-    elif map[1] == "x" and map[4] == "x" and map[7] == "x":
+    elif board[1] == "x" and board[4] == "x" and board[7] == "x":
         print("You won!")
         sys.exit()
-    elif map[2] == "x" and map[5] == "x" and map[8] == "x":
+    elif board[2] == "x" and board[5] == "x" and board[8] == "x":
         print("You won!")
         sys.exit()
-    elif map[0] == "x" and map[4] == "x" and map[8] == "x":
+    elif board[0] == "x" and board[4] == "x" and board[8] == "x":
         print("You won!")
         sys.exit()
-    elif map[2] == "x" and map[4] == "x" and map[6] == "x":
+    elif board[2] == "x" and board[4] == "x" and board[6] == "x":
         print("You won!")
         sys.exit()
     # computer's winning opportunity
-    elif map[0] == "o" and map[1] == "o" and map[2] == "o":
+    elif board[0] == "o" and board[1] == "o" and board[2] == "o":
         print("computer won! try again")
         sys.exit()
-    elif map[3] == "o" and map[4] == "o" and map[5] == "o":
+    elif board[3] == "o" and board[4] == "o" and board[5] == "o":
         print("computer won! try again")
         sys.exit()
-    elif map[6] == "o" and map[7] == "o" and map[8] == "o":
+    elif board[6] == "o" and board[7] == "o" and board[8] == "o":
         print("computer won! try again")
         sys.exit()
-    elif map[0] == "o" and map[3] == "o" and map[6] == "o":
+    elif board[0] == "o" and board[3] == "o" and board[6] == "o":
         print("computer won! try again")
         sys.exit()
-    elif map[1] == "o" and map[4] == "o" and map[7] == "o":
+    elif board[1] == "o" and board[4] == "o" and board[7] == "o":
         print("computer won! try again")
         sys.exit()
-    elif map[2] == "o" and map[5] == "o" and map[8] == "o":
+    elif board[2] == "o" and board[5] == "o" and board[8] == "o":
         print("computer won! try again")
         sys.exit()
-    elif map[0] == "o" and map[4] == "o" and map[8] == "o":
+    elif board[0] == "o" and board[4] == "o" and board[8] == "o":
         print("computer won! try again")
         sys.exit()
-    elif map[2] == "o" and map[4] == "o" and map[6] == "o":
+    elif board[2] == "o" and board[4] == "o" and board[6] == "o":
         print("computer won! try again")
         sys.exit()
 
