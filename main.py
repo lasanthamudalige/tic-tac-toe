@@ -41,7 +41,7 @@ def get_move():
     # if move is between 1 - 9. then return the move
     while True:
         try:
-            move = int(input("Move: "))
+            move = int(input("Move (1-9): "))
 
             if move >= 1 and move <= 9:
                 return move
@@ -122,4 +122,5 @@ def get_winner(board):
         sys.exit()
 
 
-main()
+if __name__ == "__main__":
+    main()
