@@ -3,123 +3,146 @@ import sys
 
 
 def main():
-    board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-    print_board(board)
+    board = [["_", "_", "_"],
+             ["_", "_", "_"],
+             ["_", "_", "_"]]
 
-    while " " in board:
-        # get user input
+    user = "O"
+    computer = "X"
+
+    on = True
+
+    # Display board for the first time
+    display_board(board)
+    # This is to print a space after the board
+    print()
+
+    while on:
+        # Get position from the user
         position = get_move()
-        # move move 'x' to the position in the map
-        move(board, position, "x")
-        # computer's move
+        # Move to that position of if it is empty
+        move(board, position, player=user)
+        # Check if user got 3 squares in row
+        won = get_winner(board, player=user)
+        # Show the board after the move
+        display_board(board)
+        print()
+        # If user got 3 squares in row, exit the game by showing 'user won!'
+        if won == 1:
+            print("You won! :)")
+            on = False
+            sys.exit(0)
+
+        # Ask the computer to move
         computer_move(board)
-        print_board(board)
-        get_winner(board)
-
-    print("Nobody won. Game is a draw")
-    sys.exit()
-
-
-def print_board(board):
-    col = 0
-    row = 0
-    # after printing 3 " " s. move to the next line.
-    for i in board:
-        if col == 2:
-            print(f"{i}", end="\n")
-            if row != 2:
-                print("_________")
-            print()
-            col = 0
-            row += 1
-        else:
-            print(f"{i} | ", end="")
-            col += 1
+        display_board(board)
+        print()
+        won = get_winner(board, player=computer)
+        if won == 1:
+            print("Computer won! :(")
+            on = False
+            sys.exit(0)
 
 
+# Print the whole board
+def display_board(board):
+    print("| " + board[0][0] + " | " + board[0]
+          [1] + " | " + board[0][2] + " | ")
+    print("| " + board[1][0] + " | " + board[1]
+          [1] + " | " + board[1][2] + " |")
+    print("| " + board[2][0] + " | " + board[2]
+          [1] + " | " + board[2][2] + " |")
+
+
+# If move is between 1 - 9. then return the move
 def get_move():
-    # if move is between 1 - 9. then return the move
-    while True:
-        try:
-            move = int(input("Move (1-9): "))
+    try:
+        move = int(input("Move (1-9): "))
 
-            if move >= 1 and move <= 9:
-                return move
+        if move >= 1 and move <= 9:
+            return move
 
-        except ValueError:
-            print("Invalid input")
+    except ValueError:
+        return get_move()
 
 
-def move(board, position, symbol):
-    # if position is empty. then add it to the map
-    if board[position - 1] == " ":
-        board[position - 1] = symbol
-    else:
-        print("Position is already filled!")
-
-
-def computer_move(board):
-    position = random.randint(0, 8)
-
-    # is there are empty slots in the map. then add 'o' to the map
-    if " " in board:
-        if board[position] == " ":
-            board[position] = "o"
+# If position is empty. then add it to the map
+# Else return 1
+def move(board, position, player):
+    if position == 1:
+        if board[0][0] == "_":
+            board[0][0] = player
         else:
-            computer_move(board)
+            return 1
+    elif position == 2:
+        if board[0][1] == "_":
+            board[0][1] = player
+        else:
+            return 1
+    elif position == 3:
+        if board[0][2] == "_":
+            board[0][2] = player
+        else:
+            return 1
+    elif position == 4:
+        if board[1][0] == "_":
+            board[1][0] = player
+        else:
+            return 1
+    elif position == 5:
+        if board[1][1] == "_":
+            board[1][1] = player
+        else:
+            return 1
+    elif position == 6:
+        if board[1][2] == "_":
+            board[1][2] = player
+        else:
+            return 1
+    elif position == 7:
+        if board[2][0] == "_":
+            board[2][0] = player
+        else:
+            return 1
+    elif position == 8:
+        if board[2][1] == "_":
+            board[2][1] = player
+        else:
+            return 1
+    elif position == 9:
+        if board[2][2] == "_":
+            board[2][2] = player
+        else:
+            return 1
 
 
-def get_winner(board):
-    # player's winning opportunity
-    if board[0] == "x" and board[1] == "x" and board[2] == "x":
-        print("You won!")
-        sys.exit()
-    elif board[3] == "x" and board[4] == "x" and board[5] == "x":
-        print("You won!")
-        sys.exit()
-    elif board[6] == "x" and board[7] == "x" and board[8] == "x":
-        print("You won!")
-        sys.exit()
-    elif board[0] == "x" and board[3] == "x" and board[6] == "x":
-        print("You won!")
-        sys.exit()
-    elif board[1] == "x" and board[4] == "x" and board[7] == "x":
-        print("You won!")
-        sys.exit()
-    elif board[2] == "x" and board[5] == "x" and board[8] == "x":
-        print("You won!")
-        sys.exit()
-    elif board[0] == "x" and board[4] == "x" and board[8] == "x":
-        print("You won!")
-        sys.exit()
-    elif board[2] == "x" and board[4] == "x" and board[6] == "x":
-        print("You won!")
-        sys.exit()
-    # computer's winning opportunity
-    elif board[0] == "o" and board[1] == "o" and board[2] == "o":
-        print("computer won! try again")
-        sys.exit()
-    elif board[3] == "o" and board[4] == "o" and board[5] == "o":
-        print("computer won! try again")
-        sys.exit()
-    elif board[6] == "o" and board[7] == "o" and board[8] == "o":
-        print("computer won! try again")
-        sys.exit()
-    elif board[0] == "o" and board[3] == "o" and board[6] == "o":
-        print("computer won! try again")
-        sys.exit()
-    elif board[1] == "o" and board[4] == "o" and board[7] == "o":
-        print("computer won! try again")
-        sys.exit()
-    elif board[2] == "o" and board[5] == "o" and board[8] == "o":
-        print("computer won! try again")
-        sys.exit()
-    elif board[0] == "o" and board[4] == "o" and board[8] == "o":
-        print("computer won! try again")
-        sys.exit()
-    elif board[2] == "o" and board[4] == "o" and board[6] == "o":
-        print("computer won! try again")
-        sys.exit()
+# Generate a position and move to that
+def computer_move(board):
+    position = random.randint(1, 9)
+
+    movement = move(board, position, "X")
+    if movement == 1:
+        computer_move(board)
+
+
+# If user or computer got 3 squares in row. that one is going to win
+def get_winner(board, player):
+    if board[0][0] == player and board[1][0] == player and board[2][0] == player:
+        return 1
+    elif board[0][1] == player and board[1][1] == player and board[2][1] == player:
+        return 1
+    elif board[0][2] == player and board[1][2] == player and board[2][2] == player:
+        return 1
+    elif board[0][0] == player and board[0][1] == player and board[0][2] == player:
+        return 1
+    elif board[1][0] == player and board[1][1] == player and board[1][2] == player:
+        return 1
+    elif board[2][0] == player and board[2][1] == player and board[2][2] == player:
+        return 1
+    elif board[0][0] == player and board[1][1] == player and board[2][2] == player:
+        return 1
+    elif board[0][2] == player and board[1][1] == player and board[2][0] == player:
+        return 1
 
 
 main()
