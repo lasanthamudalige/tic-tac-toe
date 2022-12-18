@@ -1,6 +1,6 @@
 # Tic tac toe
 
-Command line tic tac toe program
+Command line tic tac toe program.
 
 ## Description
 
