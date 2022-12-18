@@ -2,7 +2,7 @@
 
 Command line tic tac toe program
 
-### Description
+## Description
 
 User can play tic tac toe with computer. The computer will generate random number from 1-9 and move at location. If user or the computer win it will stop the game.
 
