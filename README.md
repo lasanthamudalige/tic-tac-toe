@@ -1,11 +1,47 @@
 # Tic tac toe
 
-Command line tic tac toe program.
+Tic Tac Toe game using [Python](https://www.python.org/).
 
-## Description:
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Usage](#usage)
 
-User can play tic tac toe with computer. The computer will generate random number from 1-9 and move at location. If user or the computer win it will stop the game.
+## General info
+This a command line tic tac toe game that user can play it with computer.
 
-### Preview:
+## Technologies
+Project is created with:
+* Python version: 3.10.6
 
-<img src="https://user-images.githubusercontent.com/91461938/195099847-265cd7d2-a63e-40ed-a976-b64df59970d5.png">
+## Setup
+
+To clone and run this application, you'll need [Git](https://git-scm.com) installed on your computer.\
+From your command line run:
+
+```
+# Clone this repository
+$ git clone https://github.com/lasanthamudalige/tic-tac-toe.git
+
+# Go into the repository
+$ cd tic-tac-toe/
+```
+
+
+## Usage
+
+To run this project in Linux/Unix:
+
+```
+$ python3 main.py
+```
+
+To run this project in Windows:
+
+```
+$ python main.py
+```
+
+## License 
+This project is open source and available under the [MIT License](https://github.com/lasanthamudalige/tic-tac-toe/blob/main/LICENSE).
