@@ -9,7 +9,7 @@ Tic Tac Toe game using [Python](https://www.python.org/).
 * [Usage](#usage)
 
 ## General info
-This a command line tic tac toe game that user can play it with computer.
+This a command line tic tac toe game that user can play with the computer.
 
 ## Technologies
 Project is created with:
